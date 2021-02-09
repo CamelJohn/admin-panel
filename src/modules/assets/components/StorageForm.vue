@@ -50,6 +50,11 @@
           :value="editedStorage.authentication"
           @change="editedStorage.authentication = $event"
         />
+		<StorageS3Auth
+		  v-else-if="editedStorage.kind === 's3'"
+		  :value="editedStorage.authentication"
+          @change="editedStorage.authentication = $event"
+		/>
       </template>
     </div>
     <el-button native-type="submit" :loading="submitting">SAVE</el-button>
@@ -58,12 +63,13 @@
 <script>
   import StorageFtpAuth from './StorageFtpAuth'
   import StorageGcsAuth from './StorageGcsAuth'
+  import StorageS3Auth from './StorageS3Auth'
   import FormInput from '../../core/components/forms/FormInput'
   import { useStorageForm } from '../compositions/storages'
 
   export default {
     name: 'StorageForm',
-    components: { FormInput, StorageFtpAuth, StorageGcsAuth },
+    components: { FormInput, StorageFtpAuth, StorageGcsAuth, StorageS3Auth },
     props: {
       value: Object,
       submitting: Boolean
