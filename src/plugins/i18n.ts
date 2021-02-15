@@ -7,7 +7,7 @@ export const i18n = new VueI18n({
   locale: 'en'
 })
 
-const loadedLanguages = ['en']
+const loadedLanguages: string[] = []
 
 const setI18nLanguage = (lang) => {
   i18n.locale = lang
@@ -22,7 +22,7 @@ export const loadLanguageAsync = (lang = 'en') => {
   if (loadedLanguages.includes(lang)) {
     return Promise.resolve(setI18nLanguage(lang))
   }
-  
+
   return import(`../i18n/${lang}.json`).then((messages) => {
     i18n.setLocaleMessage(lang, messages)
     loadedLanguages.push(lang)
