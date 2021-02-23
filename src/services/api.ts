@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-const baseURL = location.origin
+const baseURL = location.protocol + '//www' + location.hostname.substr(location.hostname.indexOf('.'))
 
 export const api = axios.create({ baseURL })
 
